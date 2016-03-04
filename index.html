@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+    <head>
+        <title>myContact Book</title>
+        <script src="js/jquery.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/angular-resource.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/js.js"></script>
+        <link rel="stylesheet" href="css/stylesheet.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+    </head>
+    <body  ng-controller="contacts">
+        <div class="container">
+            <div id="book-look">
+                <div class="entry-title"> <h1> Welcome To The Student's Contact Book</h1></div>
+                <hr>
+                <h2 class="totalContact"> Total Contact: {{getTotalContacts()}}</h2>
+            </div>
+            <!-- Content of list -->
+            <div class="listContent">
+                <div class="col-md-4">
+                    <li ng-repeat="extractData in extractData" class="decimal"><p>
+                        <input type="checkbox" ng-model="extractData.del"><span class="del-{{extractData.del}}">{{ extractData.name }}</span></p></li>
+                </div>
+                <!-- Email Section-->
+                <div class="col-md-4">
+                    <p ng-repeat="extractData in extractData" class="del-{{extractData.del}}">{{ extractData.email }}</p>
+                </div>
+                <!-- Phone Num Section -->
+                <div class="col-md-4">
+                    <p ng-repeat="extractData in extractData"  class="del-{{extractData.del}}">{{ extractData.num }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Place For Input -->
+            <div class="form-input">
+                <input class="input-size" maxlength="30" type="text" ng-model="formCName" ng-model-instant placeholder="Full Name | Not more than 30 characters">
+                <input maxlength="30" min="7" class="input-size" type="email" ng-model="formCEmail" ng-model-instant placeholder="Email Address | Not more than 30 characters">
+                <input class="input-size" type="number" maxlength="14" ng-model="formCNum" ng-model-instant placeholder="Phone Num | Not more than 14 characters">
+            </div>
+            <!-- Preview Of Input -->
+            <div class="form-preview">
+                <input readonly class="input-size" ng-model="formCName">
+                <input readonly class="input-size" ng-model="formCEmail">
+                <input readonly class="input-size" ng-model="formCNum">
+            </div>
+        </div>
+
+        <!-- Here's My Form Buttons -->
+        <div class="container">
+            <div id="buttons">
+                <button type="submit" ng-click="concatenateAndInsert()">Add as a new contact</button>
+                <button class="right-side" type="button" ng-click="removeSelected()">Delete selected Contact</button>
+            </div>
+        </div>
+    </body>
+</html>
