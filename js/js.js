@@ -69,7 +69,7 @@ angular.module('contactApp', ['ngStorage']).controller('contacts', function($sco
     $scope.removeSelected = function (){
         
         for(k in $scope.extractData){
-            if($scope.extractData[k].del){
+            if($scope.extractData[k].del = true){
                 $scope.extractData.splice(k);
             }
         };
